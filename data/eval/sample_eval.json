@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What is the refund policy?",
+    "expected_sources": ["Source: demo_policy.pdf, p. 1"]
+  },
+  {
+    "question": "How long does customer support take to reply?",
+    "expected_sources": ["Source: demo_policy.pdf, p. 2"]
+  },
+  {
+    "question": "How long does standard shipping take?",
+    "expected_sources": ["Source: demo_policy.pdf, p. 3"]
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "name": "local-pdf-qa",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "forwardPorts": [8501],
+  "postCreateCommand": "python -m pip install --upgrade pip && pip install -r requirements.txt",
+  "remoteUser": "vscode"
+}
