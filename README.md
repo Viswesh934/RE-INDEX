@@ -1,6 +1,6 @@
 # Local-first PDF Question Answering
 
-A GitHub Codespaces-ready app for uploading PDFs, extracting text locally, OCR-ing scanned pages only when needed, indexing chunks in FAISS, and answering questions with page-level citations.
+A local app for uploading PDFs, extracting text locally, OCR-ing scanned pages only when needed, indexing chunks in FAISS, and answering questions with page-level citations.
 
 ## What it does
 
@@ -13,15 +13,12 @@ A GitHub Codespaces-ready app for uploading PDFs, extracting text locally, OCR-i
 - Retrieve with semantic search plus optional keyword reranking
 - Answer only from retrieved chunks
 - Refuse unsupported questions with: `I don't know based on the uploaded documents.`
-- Run entirely locally inside Codespaces
+- Run entirely locally
 
 ## Repo structure
 
 ```text
 .
-├── .devcontainer/
-│   ├── devcontainer.json
-│   └── Dockerfile
 ├── app/
 │   ├── __init__.py
 │   ├── answer.py
@@ -47,17 +44,21 @@ A GitHub Codespaces-ready app for uploading PDFs, extracting text locally, OCR-i
 └── README.md
 ```
 
-## Run in Codespaces
+## Run Locally
 
-1. Open the repository in GitHub Codespaces.
-2. Wait for the dev container to build.
-3. Run:
+1. Bootstrap the local environment:
+
+```bash
+source scripts/startup.sh
+```
+
+2. Run:
 
 ```bash
 streamlit run app/ui.py
 ```
 
-4. Open the forwarded port on `8501`.
+3. Open the app on port `8501`.
 
 ## How it works
 
@@ -79,7 +80,7 @@ The answerer is deliberately extractive. It selects the most relevant sentences 
 - **Extractive answering**: safer than a free-form LLM for a first MVP because it avoids invented citations.
 - **Page-level metadata**: every chunk keeps document name, page number, and source type for traceability.
 - **Simple storage**: FAISS for vectors, JSONL for metadata, no database server.
-- **Codespaces-friendly**: the devcontainer installs Tesseract and Python dependencies up front.
+- **Local-first setup**: the bootstrap script creates a virtualenv and installs Python dependencies.
 
 ## Tests
 
