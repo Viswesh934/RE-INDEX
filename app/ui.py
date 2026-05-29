@@ -2,16 +2,30 @@ from __future__ import annotations
 
 from pathlib import Path
 import json
+import sys
 
 import streamlit as st
 
-from .answer import answer_from_hits
-from .embeddings import DEFAULT_MODEL_NAME
-from .eval import load_eval_set, run_eval
-from .index import LocalFaissIndex
-from .ingest import ingest_pdfs
-from .retrieve import Retriever
-from .storage import LocalStore
+try:
+    from .answer import answer_from_hits
+    from .embeddings import DEFAULT_MODEL_NAME
+    from .eval import load_eval_set, run_eval
+    from .index import LocalFaissIndex
+    from .ingest import ingest_pdfs
+    from .retrieve import Retriever
+    from .storage import LocalStore
+except ImportError:
+    project_root = Path(__file__).resolve().parents[1]
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+
+    from app.answer import answer_from_hits
+    from app.embeddings import DEFAULT_MODEL_NAME
+    from app.eval import load_eval_set, run_eval
+    from app.index import LocalFaissIndex
+    from app.ingest import ingest_pdfs
+    from app.retrieve import Retriever
+    from app.storage import LocalStore
 
 
 ROOT = Path(__file__).resolve().parents[1]

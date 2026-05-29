@@ -10,3 +10,4 @@ data/metadata/*
 !data/uploads/.gitkeep
 !data/index/.gitkeep
 !data/metadata/.gitkeep
+app/__pycache__
